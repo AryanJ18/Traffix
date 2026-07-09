@@ -9,8 +9,8 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 model = xgb.XGBRegressor()
 
-X = pd.read_csv("../data/delhi_traffic_features.csv").drop(columns=["Trip_ID"])
-y = pd.read_csv("../data/delhi_traffic_target.csv")["travel_time_minutes"]
+X = pd.read_csv("data/delhi_traffic_features.csv")
+y = pd.read_csv("data/delhi_traffic_target.csv")["travel_time_minutes"]
 
 X = pd.get_dummies(X, drop_first=True, dtype=int) 
 
