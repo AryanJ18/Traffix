@@ -12,6 +12,8 @@ model = xgb.XGBRegressor()
 X = pd.read_csv("data/delhi_traffic_features.csv")
 y = pd.read_csv("data/delhi_traffic_target.csv")["travel_time_minutes"]
 
+X = X.drop(columns=["average_speed_kmph", "Trip_ID"])
+
 X = pd.get_dummies(X, drop_first=True, dtype=int) 
 
 X_train, X_test, y_train, y_test = train_test_split(
@@ -22,9 +24,9 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 # Hyperparameters
-n_estimators = 100
+n_estimators = 150
 max_depth = 5
-learning_rate = 0.05
+learning_rate = 0.1
 
 mlflow.set_experiment("Traffic_Congestion_Prediction")
 
