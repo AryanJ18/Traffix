@@ -11,7 +11,12 @@ model = RandomForestRegressor()
 X = pd.read_csv("data/delhi_traffic_features.csv")
 y = pd.read_csv("data/delhi_traffic_target.csv")["travel_time_minutes"]
 
-X = X.drop(columns=["average_speed_kmph", "Trip_ID"])
+X.columns = X.columns.str.strip()
+
+X = X.drop(
+    columns=["average_speed_kmph", "Trip_ID", "traffic_density_level"],
+    errors="ignore"
+)
 
 X = pd.get_dummies(X, drop_first=True) #converison of strign data into numbers
 
@@ -23,8 +28,8 @@ X_train, X_test, y_train, y_test = train_test_split(
 )
 
 #Hyperparameters
-n_estimators = 150
-max_depth = 10
+n_estimators = 500
+max_depth = 20
 
 
 mlflow.set_experiment("Traffic_Congestion_Prediction")

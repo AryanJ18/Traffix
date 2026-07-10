@@ -5,12 +5,13 @@ from pydantic import BaseModel
 import mlflow
 import mlflow.xgboost
 import pandas as pd
+import sklearn
 
 app = FastAPI()
 
 mlflow.set_tracking_uri("sqlite:///mlflow.db")
 
-model = mlflow.xgboost.load_model("runs:/02727310b1ff4aa8a2d8a97c29e2d720/xgboost_model")
+model = mlflow.sklearn.load_model("runs:/9fd78c7ece3d4afea78e61124de227c8/random_forest_model")
 
 @app.get("/")
 def home():
