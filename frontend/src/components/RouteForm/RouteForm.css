@@ -1,0 +1,110 @@
+.route-form {
+  background: var(--bg-panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: fit-content;
+}
+
+.route-form-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.route-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+}
+
+.route-field input {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: var(--bg-panel-raised);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.route-field input:focus-visible {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 0 3px rgba(45, 212, 255, 0.18);
+}
+
+.route-submit {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: #14100a;
+  background: var(--accent-amber);
+  border: none;
+  border-radius: 8px;
+  padding: 11px 16px;
+  cursor: pointer;
+  transition: filter 0.15s ease, transform 0.1s ease;
+}
+
+.route-submit:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.route-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.route-submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.route-status {
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  min-height: 20px;
+}
+
+.route-status-hint {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.route-status-error {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--marker-end);
+}
+
+.route-readout {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+}
+
+.route-readout dt {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.route-readout dd {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  color: var(--accent-blue);
+  margin: 0;
+}

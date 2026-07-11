@@ -1,0 +1,6 @@
+@import './reset.css';
+@import './variables.css';
+
+#root {
+  min-height: 100vh;
+}
