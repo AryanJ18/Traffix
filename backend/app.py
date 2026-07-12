@@ -24,7 +24,6 @@ class TrafficInput(BaseModel):
     time_of_day: str
     day_of_week: str
     weather_condition: str
-    traffic_density_level: str
     road_type: str
 
 
@@ -45,7 +44,6 @@ def predict(data: TrafficInput):
         "time_of_day": data.time_of_day,
         "day_of_week": data.day_of_week,
         "weather_condition": data.weather_condition,
-        "traffic_density_level": data.traffic_density_level,  # Kept intact
         "road_type": data.road_type
     }
 
