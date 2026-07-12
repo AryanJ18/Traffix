@@ -3,6 +3,7 @@ import RouteForm from '../RouteForm/RouteForm.jsx';
 import RouteMap from '../RouteMap/RouteMap.jsx';
 import { fetchRoute, geocode } from '../../utils/api.js';
 import './LandingPage.css';
+import { extractKnownArea } from '../../utils/extract.js';
 
 export default function LandingPage() {
   const [fromText, setFromText] = useState('');
@@ -28,6 +29,8 @@ export default function LandingPage() {
     try {
       const [from, to] = await Promise.all([geocode(fromText), geocode(toText)]);
       const route = await fetchRoute(from, to);
+      await extractKnownArea(fromText)
+      await extractKnownArea(toText);
       setFromCoord(from);
       setToCoord(to);
       setRouteCoords(route.coords);

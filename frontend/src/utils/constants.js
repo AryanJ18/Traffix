@@ -1,2 +1,3 @@
 export const DELHI_SUFFIX = ', Delhi, India';
 export const DELHI_CENTER = [28.6139, 77.209];
+export const KNOWN_AREAS = ['Vasant Kunj', 'Greater Kailash', 'Janakpuri', 'Punjabi Bagh', 'Rohini', 'Noida Sector 18', 'IGI Airport', 'Chandni Chowk', 'Mayur Vihar', 'Okhla', 'Model Town', 'Dwarka', 'Saket', 'Hauz Khas', 'Nehru Place', 'AIIMS', 'Pitampura', 'Connaught Place', 'Rajouri Garden', 'Kalkaji', 'Preet Vihar', 'Karol Bagh', 'Lajpat Nagar', 'Shahdara', 'Civil Lines']
