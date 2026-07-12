@@ -14,6 +14,7 @@ function pinIcon(className) {
   });
 }
 
+// routeCoords: array of coordinate pairs (e.g., [[lat, lon], [lat, lon], ...]) representing the path to draw
 function FitToRoute({ fromCoord, toCoord, routeCoords }) {
   const map = useMap();
 
@@ -46,9 +47,9 @@ export default function RouteMap({ fromCoord, toCoord, routeCoords }) {
       >
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          attribution="&copy; OpenStreetMap contributors &copy; CARTO"
         />
 
+        {/* {fromCoord?<Marker position={[fromCoord.lat, fromCoord.lon]} icon={pinIcon('map-pin-start')} />:""} */}
         {fromCoord && <Marker position={[fromCoord.lat, fromCoord.lon]} icon={pinIcon('map-pin-start')} />}
         {toCoord && <Marker position={[toCoord.lat, toCoord.lon]} icon={pinIcon('map-pin-end')} />}
 
@@ -69,7 +70,6 @@ export default function RouteMap({ fromCoord, toCoord, routeCoords }) {
 
         <FitToRoute fromCoord={fromCoord} toCoord={toCoord} routeCoords={routeCoords} />
       </MapContainer>
-      <p className="route-map-attribution">© OpenStreetMap · © CARTO</p>
     </div>
   );
 }

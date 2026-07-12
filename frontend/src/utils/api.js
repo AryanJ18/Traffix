@@ -4,7 +4,7 @@ export async function geocode(query) {
   const url = `https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(
     query + DELHI_SUFFIX
   )}`;
-  const res = await fetch(url, { headers: { Accept: 'application/json' } });
+  const res = await fetch(url);
   if (!res.ok) throw new Error('Location lookup failed');
   const data = await res.json();
   if (!data.length) throw new Error(`Could not find "${query}"`);
