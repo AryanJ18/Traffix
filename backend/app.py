@@ -20,7 +20,7 @@ app.add_middleware(
 
 mlflow.set_tracking_uri("sqlite:///mlflow.db")
 
-model = mlflow.sklearn.load_model("runs:/9fd78c7ece3d4afea78e61124de227c8/random_forest_model")
+model = mlflow.sklearn.load_model("runs:/c8adbeb46ff6405190e468b41de84505/random_forest_model")
 
 @app.get("/")
 def home():
