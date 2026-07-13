@@ -7,6 +7,8 @@ import mlflow.xgboost
 import pandas as pd
 import sklearn
 from fastapi.middleware.cors import CORSMiddleware
+import joblib
+import os
 
 app = FastAPI()
 
@@ -18,9 +20,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-mlflow.set_tracking_uri("sqlite:///mlflow.db")
+# mlflow.set_tracking_uri("sqlite:///mlflow.db")
 
-model = mlflow.sklearn.load_model("runs:/c8adbeb46ff6405190e468b41de84505/random_forest_model")
+# model = mlflow.sklearn.load_model("runs:/c8adbeb46ff6405190e468b41de84505/random_forest_model")
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, 'random_forest.pkl')
+model = joblib.load(MODEL_PATH)
 
 @app.get("/")
 def home():

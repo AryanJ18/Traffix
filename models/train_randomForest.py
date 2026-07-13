@@ -5,6 +5,7 @@ import mlflow.sklearn
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error, r2_score
+import joblib
 
 model = RandomForestRegressor()
 
@@ -63,6 +64,7 @@ with mlflow.start_run():
     mlflow.log_metric("accuracy_percentage", accuracy_percentage)
     
     # E. Save Model using MLflow (Replaces joblib.dump)
-    mlflow.sklearn.log_model(model, "random_forest_model")
+    #mlflow.sklearn.log_model(model, "random_forest_model") #for testing
+    joblib.dump(model,'backend/random_forest.pkl') #when i select the final model
     
     print(f"Run Logged Successfully! \n MSE: {mse:.2f}, R2: {r2:.2f}, Accuracy: {accuracy_percentage:.2f}%")
