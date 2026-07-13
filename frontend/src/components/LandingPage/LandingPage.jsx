@@ -4,6 +4,7 @@ import RouteMap from '../RouteMap/RouteMap.jsx';
 import { fetchRoute, geocode } from '../../utils/api.js';
 import './LandingPage.css';
 import { extractKnownArea } from '../../utils/extract.js';
+import { predict } from '../../utils/predict.js';
 
 export default function LandingPage() {
   const [fromText, setFromText] = useState('');
@@ -15,6 +16,7 @@ export default function LandingPage() {
   const [durationMin, setDurationMin] = useState(null);
   const [status, setStatus] = useState('idle');
   const [errorMsg, setErrorMsg] = useState('');
+  const [predictedDuration, setPredictedDuration] = useState(null);
 
   const plotRoute = useCallback(async () => {
     if (!fromText.trim() || !toText.trim()) {
@@ -29,13 +31,17 @@ export default function LandingPage() {
     try {
       const [from, to] = await Promise.all([geocode(fromText), geocode(toText)]);
       const route = await fetchRoute(from, to);
-      await extractKnownArea(fromText)
-      await extractKnownArea(toText);
       setFromCoord(from);
       setToCoord(to);
       setRouteCoords(route.coords);
       setDistanceKm(route.distanceKm);
       setDurationMin(route.durationMin);
+
+      const fromArea = await extractKnownArea(fromText);
+      const toArea = await extractKnownArea(toText);
+      const predicted = await predict(fromArea, toArea, route.distanceKm);
+      setPredictedDuration(predicted); 
+
       setStatus('success');
     } catch (err) {
       setStatus('error');
@@ -63,7 +69,7 @@ export default function LandingPage() {
           status={status}
           errorMsg={errorMsg}
           distanceKm={distanceKm}
-          durationMin={durationMin}
+          durationMin={predictedDuration}
         />
         <RouteMap fromCoord={fromCoord} toCoord={toCoord} routeCoords={routeCoords} />
       </main>

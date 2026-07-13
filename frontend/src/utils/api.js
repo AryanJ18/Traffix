@@ -21,6 +21,5 @@ export async function fetchRoute(from, to) {
   return {
     coords: route.geometry.coordinates.map(([lon, lat]) => [lat, lon]),
     distanceKm: route.distance / 1000,
-    durationMin: route.duration / 60,
   };
 }

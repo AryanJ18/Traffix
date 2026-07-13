@@ -7,5 +7,5 @@ export async function extractKnownArea(userInput) {
     lowerInput.includes(area.toLowerCase())
   );
 
-  console.log(matchedArea);
+  return matchedArea;
 }
