@@ -3,5 +3,3 @@ mlruns
 mlflow.db
 notes.txt
 .DS_Store
-.dockerignore
-Dockerfile

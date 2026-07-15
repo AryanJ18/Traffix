@@ -9,6 +9,7 @@ import sklearn
 from fastapi.middleware.cors import CORSMiddleware
 import joblib
 import os
+from fastapi.staticfiles import StaticFiles
 
 app = FastAPI()
 
@@ -28,10 +29,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 MODEL_PATH = os.path.join(BASE_DIR, 'random_forest.pkl')
 model = joblib.load(MODEL_PATH)
 
-@app.get("/")
-def home():
-    return {"message": "FastAPI is working!"}
-
 class TrafficInput(BaseModel):
     start_area: str
     end_area: str
@@ -43,6 +40,8 @@ class TrafficInput(BaseModel):
 
 
 EXPECTED_COLUMNS = model.feature_names_in_.tolist()
+
+# app.mount("/", StaticFiles(directory="../frontend/dist", html=True), name="static")
 
 @app.post("/predict")
 def predict(data: TrafficInput):
@@ -74,3 +73,9 @@ def predict(data: TrafficInput):
     return {
         "predicted_travel_time_minutes": float(prediction)
     }
+
+STATIC_PATH = os.path.join(BASE_DIR, 'static')
+if os.path.exists(STATIC_PATH):
+    app.mount("/", StaticFiles(directory=STATIC_PATH, html=True), name="static")
+else:
+    print("Warning: Static folder not found. Frontend will not be served.")
