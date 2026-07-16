@@ -27,7 +27,7 @@ jobs:
             pip install -r backend/requirements.txt
 
           #checks the app startup
-        - name: Check backend imports
+        - name: Check backend works
           run: python -c "import backend.app"
 
         - name: run tests
