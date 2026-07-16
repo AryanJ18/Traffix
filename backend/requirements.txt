@@ -7,4 +7,4 @@ pandas
 uvicorn
 mlflow
 pytest
-httpx
+httpx2
