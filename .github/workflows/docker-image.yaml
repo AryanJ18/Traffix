@@ -1,0 +1,21 @@
+name: Docker image creation
+
+on:
+  push:
+    branch:
+      - main
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Fetch name
+      uses: actions/checkout@v4
+
+    - name: Setup docker build
+      uses: docker/setup-buildx-action@v3
+
+    - name: Docker image
+      run: |
+        docker build -t traffix .
