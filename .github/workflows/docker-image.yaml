@@ -2,8 +2,13 @@ name: Docker image creation
 
 on:
   push:
-    branch:
+    branches:
       - main
+    path:
+      - .github/workflows/docker-image.yaml
+      - frontend/**
+      - backend/**
+      - Dockerfile
 
 jobs:
   docker:
@@ -19,3 +24,12 @@ jobs:
     - name: Docker image
       run: |
         docker build -t traffix .
+
+    - name: Docker container
+      run: |
+        docker run -d --name traffix-test -p 8000:8000 traffix
+
+    - name: Test API
+      run: |
+        sleep 5
+        curl http://localhost:8000/
