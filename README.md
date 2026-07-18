@@ -15,7 +15,6 @@ TraffiX is a machine learning-powered web application that predicts travel time 
 - ⚛️ React + Vite frontend
 - 🐳 Dockerized application
 - 🔄 GitHub Actions CI/CD workflows
-- ☁️ Ready for cloud deployment
 
 ---
 
@@ -207,7 +206,7 @@ GitHub Actions automate:
 POST /predict
 ```
 
-Example request
+Example request:
 
 ```json
 {
