@@ -23,7 +23,6 @@ TraffiX is a machine learning-powered web application that predicts travel time 
 ### Frontend
 - React
 - Vite
-- Leaflet
 - OpenStreetMap
 - OSRM Routing API
 
